@@ -1,0 +1,9 @@
+---
+
+- name: R2 BGP Configuration
+  ios_config:
+       lines:
+         - router bgp 100
+         - neig 192.168.0.123 remote-as 100
+         - neig 192.168.0.123 activate
+

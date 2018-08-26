@@ -1,0 +1,40 @@
+---
+
+- hosts: "IOS-WithoutVar"
+  gather_facts: false
+  connection: local 
+
+  vars:
+   cli:
+     host: "{{ ansible_host }}"
+     username: cisco
+     password: cisco123
+     authorize: yes
+
+
+  tasks:
+   - name: Configure ACL on Cisco Switch 
+     ios_config:
+       authorize: yes
+       lines:
+         - access-list 99 permit 172.16.1.100
+       provider: "{{cli}}"
+  
+
+   - name: Verify ACL is present 
+     ios_command: 
+       commands:
+         - sh access-l 
+       waitfor: 
+         - result[0] contains 'permit 172.16.1.100'
+       provider: "{{cli}}"
+
+
+   - name: SAVE CONFIG 
+     ios_config: 
+       authorize: yes
+       save: yes
+       provider: "{{cli}}"
+
+
+

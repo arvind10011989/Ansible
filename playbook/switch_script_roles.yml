@@ -1,0 +1,10 @@
+
+---
+
+- name: Generate Baseline Config(s)
+  hosts: access
+  connection: local
+  gather_facts: no
+
+  roles:
+    - switch

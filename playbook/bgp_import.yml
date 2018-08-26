@@ -1,0 +1,24 @@
+---
+
+- hosts: "ios2"
+  gather_facts: true
+  connection: network_cli
+
+  tasks:
+   - import_tasks: /etc/ansible/playbook/bgp/R2BGP.yml
+
+   - name: SAVE CONFIG
+     ios_config:
+       save: yes
+
+- hosts: "ios1"
+  gather_facts: true
+  connection: network_cli
+
+  tasks:
+   - import_tasks: /etc/ansible/playbook/bgp/R1BGP.yml
+
+   - name: SAVE CONFIG
+     ios_config:
+       save: yes
+

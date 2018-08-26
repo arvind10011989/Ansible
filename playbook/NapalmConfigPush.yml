@@ -1,0 +1,19 @@
+---
+
+- name: Configure the R1
+  hosts: all
+  connection: local
+  gather_facts: no
+  tasks: 
+    - name: Push Config to R1
+      napalm_install_config:
+         timeout: 120
+         hostname: "{{ hostname }}"
+         username: "{{ ansible_user }}"
+         dev_os: ios
+         password: "{{ ansible_ssh_pass }}"
+         config_file: testconfig.conf
+         commit_changes: True
+         replace_config: False
+         get_diffs: True
+         diff_file: "{{ inventory_hostname }}"

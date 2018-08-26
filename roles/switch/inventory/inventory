@@ -1,0 +1,11 @@
+[access]
+access_sw1
+access_sw2
+
+[distro]
+distro_r1
+distro_r2
+
+[core]
+core_r1
+core_r2

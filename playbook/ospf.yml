@@ -1,0 +1,26 @@
+---
+
+- hosts: "IOS-Devices"
+  gather_facts: true
+  connection: network_cli
+
+  tasks:
+   - name: Configure ACL on Cisco Switch
+     ios_config:
+       lines:
+         - router ospf 100
+         - network 192.168.0.0 0.0.0.255 area 0
+
+
+   - name: Verify ACL is present
+     ios_command:
+       commands:
+         - sh ip ospf nei
+       waitfor:
+         - result[0] contains 'nei'
+
+
+   - name: SAVE CONFIG
+     ios_config:
+       save: yes
+

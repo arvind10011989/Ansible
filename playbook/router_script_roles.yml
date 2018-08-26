@@ -1,0 +1,19 @@
+---
+
+- name: Generate router configuration files
+  hosts: localhost
+  become: yes
+  become_user: root
+  become_method: sudo
+
+  roles:
+    - router
+
+- name: router configuration
+  hosts: ios
+  
+  tasks:
+    - name: router configuration
+      ios_config:
+        src: /etc/ansible/roles/router/tasks/ConfigTemplate/RTR1.txt
+        force: yes

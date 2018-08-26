@@ -1,0 +1,8 @@
+
+[routers]
+192.168.0.123
+
+[routers:vars]
+username=cisco
+password=cisco123
+dev_os=ios

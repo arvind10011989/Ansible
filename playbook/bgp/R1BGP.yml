@@ -1,0 +1,9 @@
+---
+
+- name: R1 BGP Configuration
+  ios_config:
+       lines:
+         - router bgp 100
+         - neig 192.168.0.122 remote-as 100
+         - neig 192.168.0.122 activate
+

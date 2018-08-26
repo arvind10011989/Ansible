@@ -1,0 +1,9 @@
+[routers]
+192.168.0.200
+
+[routers:vars]
+hostname=192.168.0.200
+ansible_user=cisco
+ansible_ssh_pass=cisco123
+dev_os=ios
+

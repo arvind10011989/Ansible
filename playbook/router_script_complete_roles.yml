@@ -1,0 +1,30 @@
+---
+
+- name: Generate router configuration files
+  hosts: localhost
+  become: yes
+  become_user: root
+  become_method: sudo
+
+  roles:
+    - CompleteConfiguration
+
+- name: router configuration
+  hosts: ios1
+  
+  tasks:
+    - name: router configuration
+      ios_config:
+        src: /etc/ansible/roles/CompleteConfiguration/tasks/GenratedConfiguration/twb-den-rtr1.txt
+        force: yes
+
+
+- name: router configuration
+  hosts: ios2
+
+  tasks:
+    - name: router configuration
+      ios_config:
+        src: /etc/ansible/roles/CompleteConfiguration/tasks/GenratedConfiguration/twb-la-rtr1.txt
+        force: yes
+
